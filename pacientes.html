@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patient Dashboard</title>
+  <link rel="stylesheet" href="CSS/style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">System Hestia</div>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="medicamento.html">Medicamentos</a>
+        <a href="pacientes.html">Pacientes</a>
+        <a href="user.html">Usuarios</a>
+        <a href="tratamientos.html">Tratamientos</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Administra las condiciones de tus familiares</h1>
+      <p>Mira, crea, actualiza y elimina pacientes</p>
+    </section>
+
+    <section class="patient-actions">
+      <div class="card">
+        <h2>Crear / Actualizar</h2>
+        <form id="patientForm">
+          <input type="hidden" id="patientIdHidden" />
+          <input type="text" id="name" placeholder="Name" required />
+          <input type="number" id="age" placeholder="Age" required />
+          <input type="text" id="conditions" placeholder="Conditions" />
+          <input type="text" id="allergies" placeholder="Allergies" />
+          <textarea id="description" placeholder="Description"></textarea>
+          <input type="number" id="primaryDiseaseId" placeholder="Primary Disease ID" required />
+          <select id="role" required>
+            <option value="ADMIN">ADMIN</option>
+            <option value="GUEST">GUEST</option>
+            <option value="JUNIOR">JUNIOR</option>
+          </select>
+          <button type="submit" class="primary-btn">Save</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Find or Delete by ID</h2>
+        <input type="number" id="patientId" placeholder="Patient ID" />
+        <div class="action-buttons">
+          <button onclick="getPatient()">Get</button>
+          <button onclick="deletePatient()">Delete</button>
+        </div>
+      </div>
+    </section>
+
+  
+    <section class="users-list">
+        <h2>Lista de Pacientes</h2>
+    <button class="primary-btn" id="loadAllBtn">Cargar Todos</button>
+        
+        
+        <div id="loading"></div>
+        <div class="grid" id="patientsList"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 MyApp. All rights reserved.</p>
+  </footer>
+
+  <script src="js/scriptP.js"></script>
+</body>
+</html>
