@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:8080/users';
+const apiUrl = 'https://systemhestia-1.onrender.com/users';
 
 document.addEventListener('DOMContentLoaded', fetchAllUsers);
 

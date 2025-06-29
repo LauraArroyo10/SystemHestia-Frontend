@@ -1,6 +1,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
-    const apiUrl = 'http://localhost:8080/medicine';
+    const apiUrl = 'https://systemhestia-1.onrender.com/medicine';
 
     const id = document.getElementById('id');
     const identification = document.getElementById('identification');

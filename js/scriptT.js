@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:8080/tratamientos';
+const apiUrl = 'https://systemhestia-1.onrender.com/tratamientos';
 
 document.addEventListener('DOMContentLoaded', fetchAllTreatments);
 
