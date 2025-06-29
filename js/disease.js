@@ -1,11 +1,13 @@
 const apiUrl = 'https://systemhestia-1.onrender.com/diseases';
 
-document.addEventListener('DOMContentLoaded', fetchAllDiseases);
+document.addEventListener('DOMContentLoaded', () => {
+  fetchAllDiseases();
+  document.getElementById('loadAllBtn').addEventListener('click', fetchAllDiseases);
+});
 
 document.getElementById('diseaseForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   const id = document.getElementById('diseaseIdHidden').value;
-   const loadAllBtn = document.getElementById('loadAllBtn');
   if (id) {
     await updateDisease(id);
   } else {
@@ -15,24 +17,18 @@ document.getElementById('diseaseForm').addEventListener('submit', async (e) => {
 
 async function createDisease() {
   const disease = getFormData();
-  console.log('Datos enviados:', disease);
   try {
     const res = await fetch(apiUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(disease)
     });
-
-    const data = await res.json();
-    console.log('Respuesta del servidor:', data);
-
-    if (!res.ok) throw new Error(data.message || 'Error al crear enfermedad');
-
+    if (!res.ok) throw new Error(`Error al crear enfermedad: ${res.status}`);
     alert('Enfermedad creada');
     clearForm();
     fetchAllDiseases();
   } catch (error) {
-    console.error('Error detallado:', error);
+    console.error(error);
     alert('Error al crear enfermedad');
   }
 }
@@ -46,7 +42,7 @@ async function updateDisease(id) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(disease)
     });
-    if (!res.ok) throw new Error('Error al actualizar enfermedad');
+    if (!res.ok) throw new Error(`Error al actualizar enfermedad: ${res.status}`);
     alert('Enfermedad actualizada');
     clearForm();
     fetchAllDiseases();
@@ -88,16 +84,19 @@ async function deleteDisease() {
 }
 
 async function fetchAllDiseases() {
-  document.getElementById('loading').innerText = 'Cargando enfermedades...';
+  const loading = document.getElementById('loading');
+  loading.innerText = 'Cargando enfermedades...';
   try {
     const res = await fetch(apiUrl);
+    console.log('Status:', res.status);
     if (!res.ok) throw new Error('Error al cargar enfermedades');
     const diseases = await res.json();
+    console.log('Enfermedades:', diseases);
     renderDiseases(diseases);
   } catch (error) {
-    console.error(error);
+    console.error('Error en fetchAllDiseases:', error);
     document.getElementById('diseasesList').innerHTML = '';
-    document.getElementById('loading').innerText = 'No se pudieron cargar las enfermedades.';
+    loading.innerText = 'No se pudieron cargar las enfermedades.';
   }
 }
 
@@ -111,7 +110,7 @@ function renderDiseases(diseases) {
   list.innerHTML = diseases
     .map(
       (d) => `
-    <div>
+    <div class="disease-card">
       <strong>ID:</strong> ${d.id}<br>
       <strong>Nombre:</strong> ${d.name}<br>
       <strong>Descripción:</strong> <em>${d.description}</em><br>
@@ -120,7 +119,6 @@ function renderDiseases(diseases) {
     )
     .join('');
 }
-
 
 function fillForm(d) {
   document.getElementById('diseaseIdHidden').value = d.id;
@@ -131,9 +129,9 @@ function fillForm(d) {
 
 function getFormData() {
   return {
-    name: document.getElementById('name').value,
-    description: document.getElementById('description').value,
-    recommendation: document.getElementById('recommendation').value
+    name: document.getElementById('name').value.trim(),
+    description: document.getElementById('description').value.trim(),
+    recommendation: document.getElementById('recommendation').value.trim()
   };
 }
 
