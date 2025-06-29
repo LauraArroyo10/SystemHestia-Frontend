@@ -15,6 +15,7 @@
         <a href="pacientes.html">Pacientes</a>
         <a href="user.html">Usuarios</a>
         <a href="tratamientos.html">Tratamientos</a>
+         <a href="disease.html">Enfermedades</a>
     </nav>
   </header>
 
@@ -28,13 +29,22 @@
       <div class="card">
         <h2>Crear / Actualizar</h2>
         <form id="patientForm">
+              <label for=enf"></label>
           <input type="hidden" id="patientIdHidden" />
-          <input type="text" id="name" placeholder="Name" required />
-          <input type="number" id="age" placeholder="Age" required />
-          <input type="text" id="conditions" placeholder="Conditions" />
+              <label for="Nombre">Nombre</label>
+          <input type="text" id="name" placeholder="Nombre" required />
+              <label for="enf">Edad</label>
+          <input type="number" id="Edad" placeholder="Edad" required />
+              <label for="enf">condiciones</label>
+          <input type="text" id="condiciones" placeholder="condiciones" />
+
+              <label for="enf">Alergias</label>
           <input type="text" id="allergies" placeholder="Allergies" />
-          <textarea id="description" placeholder="Description"></textarea>
-          <input type="number" id="primaryDiseaseId" placeholder="Primary Disease ID" required />
+              <label for="med">Descripcion</label>
+          <textarea id="description" placeholder="Descripcion"></textarea>
+              <label for="med">ID de enfermedad</label>
+          <input type="number" id="ID de enfermedad" placeholder="ID de enfermedad" required />
+              <label for="med">Rol</label>
           <select id="role" required>
             <option value="ADMIN">ADMIN</option>
             <option value="GUEST">GUEST</option>

@@ -1,4 +1,6 @@
-/* Reset & base */
+/* ----------------------------------------
+   1. Reset y configuración base
+---------------------------------------- */
 * {
   margin: 0;
   padding: 0;
@@ -7,12 +9,28 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, sans-serif;
-  background-color: #dbe1e6;
+  background: linear-gradient(-45deg, #dbe1e6, #c8f2ef, #f0f0f0, #e0f7fa);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
   color: #333;
   line-height: 1.6;
 }
 
-/* Header */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+main {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* ----------------------------------------
+   2. Encabezado y navegación
+---------------------------------------- */
 header {
   background-color: #1b2a41;
   color: #e3e8eb;
@@ -23,8 +41,17 @@ header {
 }
 
 header .logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 1.5rem;
   font-weight: bold;
+  color: white;
+}
+
+header .logo img {
+  height: 30px;
+  width: auto;
 }
 
 header nav a {
@@ -35,10 +62,11 @@ header nav a {
 
 header nav a:hover {
   color: #57cc99;
-  
 }
 
-/* Hero section */
+/* ----------------------------------------
+   3. Sección Hero
+---------------------------------------- */
 .hero {
   text-align: center;
   padding: 3rem 1rem;
@@ -46,15 +74,29 @@ header nav a:hover {
   color: #e3e7eb;
 }
 
+.hero h1,
+.hero p {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
 .hero h1 {
   font-size: 2rem;
   margin-bottom: 0.5rem;
+  animation-delay: 0.1s;
 }
 
 .hero p {
   margin-bottom: 1rem;
+  animation-delay: 0.3s;
 }
 
+
+
+/* ----------------------------------------
+   4. Botones generales
+---------------------------------------- */
 .primary-btn {
   background-color: #57cc99;
   color: #fff;
@@ -65,22 +107,34 @@ header nav a:hover {
   margin-top: 15px;
 }
 
-
-/* User actions */
-.user-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-  padding: 3rem;
+.edit-btn {
+  background-color: #1b2a41;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
 }
 
+/* ----------------------------------------
+   5. Tarjetas y formularios
+---------------------------------------- */
 .card {
   background: #fff;
   border-radius: 6px;
-  padding: 1.10rem;
+  padding: 1.1rem;
   width: 280px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .card h2 {
@@ -89,14 +143,42 @@ header nav a:hover {
   color: #1b2a41;
 }
 
-.card form input, .card form select, .card input {
+.card form input,
+.card form select,
+.card input,
+.card textarea {
   width: 100%;
-  padding: 0.10rem;
+  padding: 0.1rem;
   margin-bottom: 0.6rem;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
+.card:nth-child(2) { animation-delay: 0.1s; }
+.card:nth-child(3) { animation-delay: 0.2s; }
+.card:nth-child(4) { animation-delay: 0.3s; }
+.card:nth-child(5) { animation-delay: 0.4s; }
+
+.descripcion {
+  margin-bottom: 5px;
+}
+
+/* ----------------------------------------
+   6. Contenedores de acciones
+---------------------------------------- */
+.user-actions,
+.patient-actions,
+.disease-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* ----------------------------------------
+   7. Botones de acción dentro de tarjetas
+---------------------------------------- */
 .action-buttons {
   display: flex;
   gap: 0.4rem;
@@ -118,7 +200,16 @@ header nav a:hover {
   margin-top: 4px;
 }
 
-/* Users list */
+
+#loadAllBtn {
+  display: block;
+  margin: 1rem auto;
+}
+
+
+/* ----------------------------------------
+   8. Listado de usuarios/enfermedades
+---------------------------------------- */
 .users-list {
   padding: 2rem;
   text-align: center;
@@ -148,6 +239,16 @@ header nav a:hover {
   text-align: left;
 }
 
+
+
+.diseases-list h2 {
+  text-align: center;
+  width: 100%;
+}
+
+/* ----------------------------------------
+   9. Pie de página
+---------------------------------------- */
 footer {
   text-align: center;
   padding: 1rem;
@@ -156,61 +257,9 @@ footer {
   margin-top: 2rem;
 }
 
-
-header .logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-header .logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem; /* separa el logo del texto */
-}
-
-header .logo img {
-    height: 30px; /* ajusta el tamaño del logo */
-    width: auto;
-}
-
-header .logo span {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
-}
-
-.descripcion {
-  margin-bottom: 5px; /* Ajusta el valor según el espacio que quieras */
-}
-.edit-btn {
-  background-color: #1b2a41;
-  color: #fff;
-  border: none;
-  padding: 0.4rem 0.8rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-.card {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s ease forwards;
-}
-
-.card:nth-child(2) {
-  animation-delay: 0.1s;
-}
-.card:nth-child(3) {
-  animation-delay: 0.2s;
-}
-.card:nth-child(4) {
-  animation-delay: 0.3s;
-}
-.card:nth-child(5) {
-  animation-delay: 0.4s;
-}
-
+/* ----------------------------------------
+   10. Animaciones
+---------------------------------------- */
 @keyframes fadeInUp {
   to {
     opacity: 1;
@@ -218,65 +267,9 @@ header .logo span {
   }
 }
 
-.card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  
-}
-
-.hero h1,
-.hero p {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s ease forwards;
-}
-
-.hero h1 {
-  animation-delay: 0.1s;
-}
-
-.hero p {
-  animation-delay: 0.3s;
-}
-body {
-  background: linear-gradient(-45deg, #dbe1e6, #c8f2ef, #f0f0f0, #e0f7fa);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
-}
-
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
 .intro-box {
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.6s ease forwards;
   animation-delay: 0.2s;
 }
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-main {
-  max-width: 1000px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-.patient-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-  padding: 2rem;
-}
-
