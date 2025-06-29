@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Tratamientos</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <link rel="stylesheet" href="CSS/style.css">
+</head>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<body>
+ <header>
+     <div class="logo">
+        <img src="img/logo-01.png" alt="SystemHestia Logo" ">
+        <span>SystemHestia</span>
+    </div>
+    <nav>
+        <a href="home.html">Inicio</a>
+        <a href="medicamento.html">Medicamentos</a>
+        <a href="pacientes.html">Pacientes</a>
+        <a href="user.html">Usuarios</a>
+        <a href="tratamientos.html">Tratamientos</a>
+    </nav>
+</header>
+
+  <main>
+    <section class="hero">
+      <h1>Gestiona los tratamientos de tu familia</h1>
+      <p>Consulta, crea y elimina tratamientos en el sistema</p>
+    </section>
+
+    <section class="user-actions">
+      <div class="card">
+        <h2>Crear Tratamiento</h2>
+        <form id="treatmentForm">
+          <input type="hidden" id="treatmentIdHidden">
+
+          <label for="patientId">ID del paciente</label>
+          <input type="number" id="patientId" placeholder="Ej: 1" required>
+
+          <label for="medicineId">ID del medicamento</label>
+          <input type="number" id="medicineId" placeholder="Ej: 3" required>
+
+          <label for="diseaseId">ID de la enfermedad</label>
+          <input type="number" id="diseaseId" placeholder="Ej: 1" required>
+
+          <label for="dosage">Dosis</label>
+          <input type="text" id="dosage" placeholder="Ejemplo: 400mg" required>
+
+          <label for="frequency">Frecuencia</label>
+          <input type="text" id="frequency" placeholder="Ejemplo: Cada 8 horas" required>
+
+          <label for="startDate">Fecha de inicio</label>
+          <input type="datetime-local" id="startDate" required>
+
+          <label for="endDate">Fecha de fin</label>
+          <input type="datetime-local" id="endDate" required>
+
+          <label for="status">Estado</label>
+<select id="status" required>
+  <option value="">Seleccionar estado</option>
+  <option value="ACTIVE">Activo</option>
+  <option value="COMPLETED">Completado</option>
+  <option value="SUSPENDED">Suspendido</option>
+</select>
+
+
+          <label for="observations">Observaciones</label>
+          <textarea id="observations" placeholder="Agrega detalles adicionales..." required></textarea>
+
+          <button type="submit" class="primary-btn">Guardar</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Buscar o Eliminar Tratamiento</h2>
+        <input type="number" id="treatmentId" placeholder="ID del tratamiento">
+        <div class="action-buttons">
+          <button type="button" onclick="getTreatmentById()">Buscar por ID</button>
+          <button type="button" onclick="deleteTreatment()">Eliminar</button>
+        </div>
+        <input type="text" id="patientSearchName" placeholder="Nombre del paciente">
+        <div class="action-buttons">
+          <button type="button" onclick="getTreatmentsByPatient()">Buscar por paciente</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="users-list">
+      <h2>Todos los Tratamientos</h2>
+       <button class="primary-btn" id="loadAllBtn">Cargar Todos</button>
+          <div id="loading"></div>
+       <div class="grid" id="treatmentsList"></div>
+    </section>
+  </main>
+
+
+
+  <footer>
+    <p>&copy; 2025 MiApp. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="js/scriptT.js"></script>
+</body>
+</html>
+
+
