@@ -13,7 +13,7 @@
       <span>SystemHestia</span>
     </div>
     <nav>
-      <a href="home.html">Inicio</a>
+      <a href="index.html">Inicio</a>
       <a href="medicamento.html">Medicamentos</a>
       <a href="pacientes.html">Pacientes</a>
       <a href="user.html">Usuarios</a>
@@ -21,53 +21,53 @@
     </nav>
   </header>
 
-  <main class="hero">
-    <h1>Título principal</h1>
-    <div style="max-width: 600px; margin: 40px auto; text-align: justify; font-size: 1.2em; line-height: 1.6; font-family: 'Segoe UI', sans-serif; background-color: #57cc99; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-      <p style="margin: 0;">
-        Espacio descriptivo para introducir el propósito general de la plataforma o sección.
-      </p>
-    </div>
+  <main>
+    <section class="hero">
+      <h1>Manage Patients Easily</h1>
+      <p>View, create, update and delete patients from your database.</p>
+    </section>
+
+    <section class="patient-actions">
+      <div class="card">
+        <h2>Create / Update Patient</h2>
+        <form id="patientForm">
+          <input type="hidden" id="patientIdHidden" />
+          <input type="text" id="name" placeholder="Name" required />
+          <input type="number" id="age" placeholder="Age" required />
+          <input type="text" id="conditions" placeholder="Conditions" />
+          <input type="text" id="allergies" placeholder="Allergies" />
+          <textarea id="description" placeholder="Description"></textarea>
+          <input type="number" id="primaryDiseaseId" placeholder="Primary Disease ID" required />
+          <select id="role" required>
+            <option value="ADMIN">ADMIN</option>
+            <option value="GUEST">GUEST</option>
+            <option value="JUNIOR">JUNIOR</option>
+          </select>
+          <button type="submit" class="primary-btn">Save</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Find or Delete by ID</h2>
+        <input type="number" id="patientId" placeholder="Patient ID" />
+        <div class="action-buttons">
+          <button onclick="getPatient()">Get</button>
+          <button onclick="deletePatient()">Delete</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="patients-list">
+      <h2>All Patients</h2>
+      <div id="loading">Loading patients...</div>
+      <div id="patientsList" class="grid"></div>
+    </section>
   </main>
 
-  <section class="user-actions">
-    <div class="card">
-      <h2>Título de sección 1</h2>
-      <p>Espacio descriptivo para esta funcionalidad</p>
-      <a href="#">
-        <button class="primary-btn">Acceder</button>
-      </a>
-    </div>
-
-    <div class="card">
-      <h2>Título de sección 2</h2>
-      <p>Espacio descriptivo para esta funcionalidad</p>
-      <a href="#">
-        <button class="primary-btn">Acceder</button>
-      </a>
-    </div>
-
-    <div class="card">
-      <h2>Título de sección 3</h2>
-      <p>Espacio descriptivo para esta funcionalidad</p>
-      <a href="#">
-        <button class="primary-btn">Acceder</button>
-      </a>
-    </div>
-
-    <div class="card">
-      <h2>Título de sección 4</h2>
-      <p>Espacio descriptivo para esta funcionalidad</p>
-      <a href="#">
-        <button class="primary-btn">Acceder</button>
-      </a>
-    </div>
-  </section>
-
   <footer>
-    &copy; 2025 SystemHestia. Todos los derechos reservados.
+    <p>&copy; 2025 MyApp. All rights reserved.</p>
   </footer>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>AOS.init();</script>
+
+  <script src="js/scriptP.js"></script>
 </body>
 </html>
