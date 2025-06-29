@@ -15,18 +15,24 @@ document.getElementById('diseaseForm').addEventListener('submit', async (e) => {
 
 async function createDisease() {
   const disease = getFormData();
+  console.log('Datos enviados:', disease);
   try {
     const res = await fetch(apiUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(disease)
     });
-    if (!res.ok) throw new Error('Error al crear enfermedad');
+
+    const data = await res.json();
+    console.log('Respuesta del servidor:', data);
+
+    if (!res.ok) throw new Error(data.message || 'Error al crear enfermedad');
+
     alert('Enfermedad creada');
     clearForm();
     fetchAllDiseases();
   } catch (error) {
-    console.error(error);
+    console.error('Error detallado:', error);
     alert('Error al crear enfermedad');
   }
 }
