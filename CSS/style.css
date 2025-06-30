@@ -116,7 +116,6 @@ header nav a:hover {
   cursor: pointer;
   font-size: 0.9rem;
 }
-
 /* ----------------------------------------
    5. Tarjetas y formularios
 ---------------------------------------- */
@@ -143,6 +142,15 @@ header nav a:hover {
   color: #1b2a41;
 }
 
+.card-img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  margin-bottom: 0.8rem;
+}
+
 .card form input,
 .card form select,
 .card input,
@@ -162,6 +170,7 @@ header nav a:hover {
 .descripcion {
   margin-bottom: 5px;
 }
+
 
 /* ----------------------------------------
    6. Contenedores de acciones
